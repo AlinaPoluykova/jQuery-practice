@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+<head>
+	<title>jQuery css</title>
+	<style type="text/css">
+		div {  
+		    width: 60px;  
+		    height: 60px;  
+		    margin: 5px;     
+		  }
+		 p { 
+		 	margin-top:20px;  
+		    padding: 5px;  
+		    border: 2px solid #666;  
+		  }
+		  p {
+		margin: 8px;
+		font-size: 16px;
+			}
+		.myclass {
+			 color: #FA5858;
+			}  
+		.highlight {
+		    background: #CEF6F5;
+		  }
+		#block {
+			background: #CEF6F5;
+			width: 200px;
+			height: 80px;
+			border: 5px solid black;
+		}
+		#block2 {
+			background: #FA5858;
+			width: 200px;
+			height: 80px;
+			border: 5px solid black;
+		}
+		.divclass 
+		  {
+		    width: 90px;
+			height: 75px;
+			margin: 5px;
+			background-color:#F3E2A9
+		 }
+		 #toggle {
+		 	width: 50px;
+		    margin-left: 10px;
+		    padding: 5px;
+		    border: 2px solid #666;
+		  }
+		  #div1, #div2, #div3 {
+		  	border: 2px solid black;
+		  }
+		  #offset {
+		    margin-left: 10px;
+		    padding: 5px;
+		    border: 2px solid #666;
+		    width: 300px;
+		    height: 50px;
+
+		  }
+
+	</style>
+	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+</head>
+<body>
+	<h3>1. Get the background color of an element. Click on the following paragraphs and get the background color.</h3>
+	<div class= "square" style="background-color: red;"></div>
+	<div class= "square" style="background-color: rgb(16,99,30);"></div>
+	<div class= "square" style="background-color: #523456;"></div>
+	<div class= "square" style="background-color: #a11;"></div>
+	<p id="info"></p>
+
+	<h3>2. Add the following class "myclass" to the matched paragraph elements.</h3>
+		<p id="first">jQuery Exercises</p>
+		<p id="second">and Solution.</p>
+		<button id="f-s">Add class</button>
+
+	<h3>3. Find the widths and heights of various elements. </h3>
+	<div id="form" style="height:75px;width:200px;padding:10px;margin:3px;border:1px solid blue;background-color:#81DAF5;"></div>
+
+	<h3>4. Get the scroll top and left of an element.</h3>
+	<p id="par">text is here text is here text <br> is here text is here text is here</p>
+
+	<h3>5.Access the position of an element</h3>
+	<div id="form2" style="height:75px;width:200px;padding:10px;margin:3px;border:1px solid blue;background-color:#F3E2A9;"></div>
+	<p id="info-2"></p>
+
+	<h3>6.Find the innerHeight and innerWidth of an element.</h3>
+	<div id="block"></div>
+
+	<h3>7. Find the outerHeight and outerWidth of an element.</h3>
+	<div id="block2"></div>
+
+	<h3>8.Find an element that contains a specified class.(Check console)</h3>
+	<div id="div1" class="divclass"></div>
+	<div id="div2"> </div>
+	<div id="div3"> </div>
+
+	<h3>9. Toggle a specified class when an element is clicked.</h3>
+	<p id="toggle">Toggle</p>
+
+	<h3>10. Find the offset of an element.</h3>
+	<button id="offset">Click</button>
+
+</body>
+	<script>
+	// 1.Get the background color of an element. Click on the following paragraphs and get the background color.
+	$(".square").click(function(){
+		var color = $(this).css("background-color");
+		$( "#info" ).html( "color: " + color);
+	})
+	// 2. Add the following class "myclass" to the matched paragraph elements.
+	$("#f-s").click(function(){
+		$("#first").addClass("highlight");
+		$("#second").addClass("myclass");
+	})
+	// 3. Find the widths and heights of various elements. 
+	$("#form").click(function(){
+		var width = $("#form").width()
+		var height = $("#form").height();
+		alert("width: " + width + ", height: " + height)
+	})
+
+	// 4. Get the scroll top and left of an element.
+	$("#par").click(function(){
+		alert("position is " + $("#par").scrollLeft() + ", " + $("#par").scrollTop());
+	})
+
+	// 5. Access the position of an element
+	$("#form2").click(function(){
+		$("#info-2").text("position left is " + $("#form2").position().left + ", position top is " + $("#form2").position().top)
+	})
+	// 6. Find the innerHeight and innerWidth of an element.
+	$("#block").click(function(){
+		alert("innerWidth " + $("#block").innerWidth() + " ,innerHeight " + $("#block").innerHeight());
+	})
+	// 7. Find the outerHeight and outerWidth of an element.
+	$("#block2").click(function(){
+		alert("outerWidth " + $("#block2").outerWidth() + " ,outerHeight " + $("#block2").outerHeight());
+	})
+
+	// 8. Find an element that contains a specified class.
+	console.log("div1 " + $("#div1").hasClass("divclass"))
+	console.log("div2 " + $("#div2").hasClass("divclass"))
+	console.log("div3 " + $("#div3").hasClass("divclass"))
+
+	// 9. Toggle a specified class when an element is clicked.
+	$("#toggle").click(function(){
+		$(this).toggleClass("highlight");
+	})
+	// 10. Find the offset of an element.
+	$("#offset").click(function(){
+		alert("offset-top: " + $(this).offset().top + ", offset-left: "+ $(this).offset().left)
+	})
+	 </script>
+</html>
+
+
+
