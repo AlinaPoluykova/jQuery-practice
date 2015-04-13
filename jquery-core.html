@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+<head>
+	<title>jQuery practice</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>  
+</head>
+<body>
+	<section class="container">
+		<h4>1. Find all h1 elements that are children of a div element and apply a new color to them.</h4>
+		<h5>abc</h5>
+	<div>
+		<h5>div-1</h5>
+		<h5>div-2</h5>
+		</div>
+		<h5>xyz</h5>
+		<button id="change">Change color</button><br><br>
+
+		<h4>2. Set the background color of a page to red.</h4>
+		<button id="changeColor">Change background</button>
+
+		<h4>3. Hide all the input elements within a form.</h4>
+		<form name="demo_form">
+		First name: <input type="text" name="fname"><br>
+		Last name: <input type="text" name="lname"><br>
+		</form>
+
+		<h4>4. Find the specific option tag text value of a selected option.(log out in console)</h4>
+			<select id="myselect">
+			<option value="1">Option-1</option>
+			<option value="2">Option-2</option>
+			<option value="3">Option-3</option>
+			</select><br><br>
+			<button id="opt">Get second option</button>
+
+		<h4>5.Check/uncheck a checkbox input or radio button?</h4>
+		 <form action="">
+		 <input type="radio" name="sex" value="male" checked>Male<br>
+		 <input type="radio" name="sex" value="female">Female
+		 </form><br>
+		 <button id="check">Check female</button><br><br>
+
+		<h4>6.Write jQuery code to append a div element (and all of its contents) dynamically to the body element.</h4>
+		<button id="appen">Append</button><br><br>
+
+		<h4>7.Write a jQuery Code to get a single element from a selection.</h4>
+		<ul>
+			<li>Html Tutorial</li>
+			<li>Mongodb Tutorial</li>
+			<li>Python Tutorial</li>
+		</ul>
+		<button id="getElem">Get second element</button>
+
+		<h4>8.Write jQuery Code to add a <b> tag at the beginning of the list item, containing the index of the list item.<h4>
+			<button id="bold">Add bold</button>
+
+		<h4>9. Write jQuery Code to change the hyperlink and the text of a existing link.</h4>
+			<a id="a" href="www.w3resource.com/sqlite/" id='tut'>SQLite Tutorial</a><br>
+			<button id="text">Change link</button>
+	</section>
+
+</body>
+
+<script type="text/javascript">
+	// 1.Find all h1 elements that are children of a div element and apply a new color to them. 
+	$("#change").click(function(){
+		$("div > h5").css("color", "yellow");
+	})
+	// 2.Set the background color of a page to red.
+	$("#changeColor").click(function(){
+		$(document.body).css("background", "red");
+	})
+	// 3. Hide all the input elements within a form.
+	$(demo_form.elements).hide()
+	// 4. Find the specific option tag text value of a selected option.
+	$("#opt").click(function(){
+		var text = $("#myselect option[value=2]")
+		console.log(text);
+	})
+	// 5. Check/uncheck a checkbox input or radio button?
+	$("#check").click(function(){
+		$("input:radio[value=female]").prop("checked", true)
+	})
+		
+	// 6. Write jQuery code to append a div element (and all of its contents) dynamically to the body element.
+	$("#appen").click(function(){
+		var div = "<div><h1>JQuery Core</h1></div>"
+		$(div).appendTo(".container");
+	})
+
+	// 7.Write a jQuery Code to get a single element from a selection.
+	$("#getElem").click(function(){
+		var text2 = $("li")[1].innerHTML;
+		alert(text2);
+	})
+
+	// 8. Write jQuery Code to add a <b> tag at the beginning of the list item, containing the index of the list item.
+	$("#bold").click(function(){
+		$("li").each(function(index, elem){
+			$(elem).prepend("<b>" + index + ": </b>")
+		})
+	})
+
+	//9. Write jQuery Code to change the hyperlink and the text of a existing link. 
+	$("#text").click(function(){
+		$("#a").attr({
+			href: 'http://www.sqlite.org/'
+		})
+	})
+
+
+
+</script>
+</html>
