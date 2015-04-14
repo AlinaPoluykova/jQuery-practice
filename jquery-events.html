@@ -1,0 +1,213 @@
+<!doctype html>
+<html>
+<head>
+	<title>jQuery Events</title>
+	<style type="text/css">
+	.dbl {
+		background-color: yellow;
+	}
+	.focused {
+   background: green;
+    }
+	</style>
+</head>
+<body>
+	<h2>jQuery Events</h2>
+	<h4>1. Attach a click and double-click event to the p element.</h4>
+	<p id="click">Click me</p>
+
+	<h4>2. Attach a function to the blur event. The blur event occurs when the following input Field1 loses focus.</h4>
+	<form>
+		<input id="field1" type="text" value="Field 1">
+		<input id="field1" type="text" value="Field 2">
+	</form>
+	<h4>3. Append a 'p' element with a text message when an 'input' field is changed.</h4>
+		<form  id='demo_form'>
+		<input id="field-1" type="text" value="Field 1">
+		</form>
+	<h4>4. Hide all headings on a page when they are clicked</h4>
+	<h5 id="h5">Heading-1</h5>
+	<h4 id="h4">Heading-2</h4>
+	<h3 id="h3">Heading-3</h3>
+
+	<h4>5. Double click on paragraph to toggle background color.</h4>
+	<p id="col">Click to change the color</p>
+
+	<h4>6. Click a header to add another </h4>
+	<h5 id="add">Click me to add another!</h5>
+
+	<h4>7.  Change the background color of the 'div' element of the following code on clicking the button. .</h4>
+	<div id="yel" style="background-color:yellow"> 
+	<p>Click the button to change the background color of this paragraph.</p> 
+	<button id="color">Click me!</button> 
+	</div>
+
+	<h4>8. Find the position of the mouse pointer relative to the left and top edges of the document</h4>
+	<div id="position"></div>
+
+	<h4>9. Stop people from writing in first text input box (user ID).</h4>
+	<p>User ID : <input type="text" id='field_1'></p>
+	<p>Password : <input type="password" id='field2'>
+
+	<h4>10. Cancel the default action (click) of the first URL.</h4>
+	<a id="mysql" href="http://www.w3resource.com/mysql/mysql-tutorials.php">MySQL Tutorial</a>
+	<p></p>
+	<a id="sqlite" href="http://www.w3resource.com/sqlite/">SQLite Tutorial</a>
+	</div>
+
+	<h4>11.Return previous values of custom events.</h4>
+	<button id="result">Display event.result</button>
+	<p></p>
+
+	<h4>12. Display the tag's name on click.</h4>
+	<h1 id="tag1">Heading1</h1>
+	<h2>Heading2</h2>  
+	<p>Paragraph</p>
+	<button>Button</button>
+	<div id="log"></div>  
+
+	<h4>13. Count the number of milliseconds between the two click events on a paragraph.</h4>
+	<p id="count">Count</p>
+
+	<h4>14. Display the event type on clicking all h1 elements.</h4>
+	<h2 class="h">This is header2</h2>
+	<h2 class="h">This is header3</h2>
+
+	<h4>15. Display the keyboard key which was pressed in a textbox:</h4>
+	Input your name:  <input id="inp" type="text">
+	<div id="inp-res"></div>
+
+	<h4>Attach a function to the focus event. The focus event occurs (display a message regarding the text field) when the 'input' field gets focus.</h4>
+	<p><input id="inp-name" type="text"> <span id="span-name"></span></p>
+	<p><input id="inp-ln"type="text"> <span id="span-ln"></span></p>
+
+	<h4>17. Test if an input has focus.</h4>
+	<input id="foc">
+
+	<h4>18. Show texts when mouseup and mousedown event triggering.</h4>
+	<p id="mouse">Test if mouseuo or mouse down</p>
+	<p id="mouse-info"></p>
+
+	<h4>19. Display the window width while (or after) it is resized.</h4>
+
+</body>
+	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<!-- 	1. Attach a click and double-click event to the p element. -->
+	<script type="text/javascript">
+	$("#click").bind("click", function(){
+		$('<p>This is a click event</p>').appendTo("#click");
+	})
+	$("#click").bind("dblclick", function(){
+		$('<p>This is a double-click event</p>').appendTo("#click");
+	})
+
+	// 2. Attach a function to the blur event. The blur event occurs when the following <input> Field1 loses focus.
+	$("#field1").blur(function(){
+		alert("Field1 loses focus!")
+	})
+
+	// 3. Append a 'p' element with a text message when an 'input' field is changed.
+	$("#field-1").change(function () {
+		$('<p>The field 1 has been changed</p>').appendTo("#demo_form");
+	})
+
+	// 4. Hide all headings on a page when they are clicked
+	$("#h5").click(function(){
+		$(this).hide()
+	})
+	$("#h4").click(function(){
+		$(this).hide()
+	})
+	$("#h3").click(function(){
+		$(this).hide()
+	})
+	// 5.Double click on paragraph to toggle background color
+	$("#col").bind("dblclick", function(){
+		$('body').toggleClass('dbl')
+	})
+
+	// 6. Click a header to add another 
+	$("#add").click(function(){
+		$(this).after('<h5 id="add">Click me to add another!</h5>')
+	})
+
+	// 7.  Change the background color of the <div> element of the following code on clicking the button. 
+	$("#color").click(function(){
+		$("#yel").css("background-color", "green")
+	})
+	// 8. Find the position of the mouse pointer relative to the left and top edges of the document
+	$(document).on("mousemove", function(event){
+		$("#position").text("pageX: " + event.pageX + ", pageY: " + event.pageY)
+	})
+	// 9. Stop people from writing in first text input box (user ID).
+	$("#field_1").focus(function(){
+		$(this).blur();
+	})
+
+	// 10. Cancel the default action (click) of the first URL.
+	$("#mysql").click(function(e){
+		event.preventDefault();
+	})
+	// 11. Return previous values of custom events
+	$("#result").click(function(){
+		return("Heey");
+	})
+	$("#result").click(function(event){
+		alert(event.result)
+	})
+
+	// 12. Display the tag's name on click.
+	$("body").click(function(event){
+		$("#log").html("Clicked tag is " + event.target.nodeName)
+	})
+
+	// 13. Count the number of milliseconds between the two click events on a paragraph.
+	$("#count").click(function(event){
+		var time1 = event.timeStamp
+
+		$("#count").click(function(event){
+			if(time1){
+				time =  event.timeStamp - time1
+				alert("Between two clicks passed " + time)
+			}
+		})
+	})
+
+	// 14. Display the event type on clicking all h1 elements.
+	$(".h").click(function(event){
+		alert("event type is " + event.type)
+	})
+
+	// 15. Display the keyboard key which was pressed in a textbox:
+	$("#inp").on("keydown", function(event){
+		$("#inp-res").text(event.type + ": " + event.which)
+	})
+
+	// 16. Attach a function to the focus event. The focus event occurs (display a message regarding the text field) when the <input> field gets focus.
+	$("#inp-name").focus(function(){
+		$("#span-name").text("Input your name")
+	})
+	$("#inp-ln").focus(function(){
+		$("#span-ln").text("Input your last name")
+	})
+	// 17. Test if an input has focus.
+	$("#foc").focus(function(){
+		$("#foc").addClass("focused")
+	})
+	$("#foc").blur(function(){
+		$("#foc").removeClass("focused")
+	})
+
+	// 18. Show texts when mouseup and mousedown event triggering.
+	$("#mouse").on("mouseup", function(){
+		$("#mouse-info").text("Mouseup")
+	})
+	$("#mouse").on("mousedown", function(){
+		$("#mouse-info").text("Mousedown")
+	})
+	// 19. Display the window width while (or after) it is resized.
+	$(window).resize(function(){
+		$('body').append('Window width ' + $(window).width())
+	})
+	</script>
+</html>
