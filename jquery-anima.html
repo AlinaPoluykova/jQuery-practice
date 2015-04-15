@@ -1,0 +1,182 @@
+<!doctype html>
+<html>
+<head>
+	<title>jQuery animations</title>
+	<style type="text/css">
+	.new {  
+    background-color: #3B0B24;  
+    }  
+    #form4 {
+    margin: 3px;  
+    width: 50px;  
+    position: relative;  
+    height: 50px;  
+    left: 10px;  
+    top: 30px;  
+    background-color: #9F81F7
+	}
+	.slide {  
+    background: #0694EC;  
+    margin: 3px;  
+    width: 80px;  
+    height: 100px;  
+    display: none;  
+    float: left;  
+  } 
+	</style>
+</head>
+<body>
+	<h4>1. Animate an element, by changing its height and width.</h4>
+	<button id="btn1">Animate height & width</button>
+	<button id="btn2">Reset</button>
+	<div id="box" style="background:#B45F04;height:100px;width:100px;margin:6px;"></div>
+
+	<h4>2. Stop an animation.</h4>
+	<button id="btn1-2">Start Animate</button>
+	<button id="btn2-2">Stop Animate</button>
+	<div id="box2" style="background:#5858FA;height:100px;width:100px;margin:6px;"></div>  
+
+	<h4>3. Set a timer to delay execution of subsequent items in the queue.</h4>
+	<button id="fade">Click to fade in boxes with a delay</button><br>
+	<div id="div1" style="width:100px;height:90px;display:none;background-color:#9F81F7;"></div><br>  
+	<div id="div2" style="width:100px;height:90px;display:none;background-color:#0B610B;"></div><br>  
+	<div id="div3" style="width:100px;height:90px;display:none;background-color:#61210B;"></div><br>  
+
+	<h4>4.Use dequeue to end a custom queue function which allows the queue to keep going.</h4>
+	<button id="but4">Queue</button>
+	<div id="form4"></div><br><br>
+
+	<h4>5.Fade in and fade out all division elements.</h4>
+	<div id="fad" style="background:#2E9AFE; width:10%;">My Effect is fadeOut Effect</div>
+	 <button id="btn4">Fade Out (3 Second)</button>
+	 <button id="btn4-2">Fade In (3 Second)</button>
+
+	 <h4>6.Animates a paragraph to fade to an specified opacity (complete the animation within 500 milliseconds).</h4>
+	 <p id="fade6"> Click this paragraph to see it fade.</p>
+
+	 <h4>7. Toggle between fading in and fading out different boxes.</h4>
+	 <button id="fade7">Click to fade in/out boxes</button><br><br>
+	<div id="div-1" style="width:100px;height:100px;background-color:#6D5050;"></div>
+	<br>
+	<div id="div-2" style="width:100px;height:100px;background-color:#42D5A9;"></div>
+	<br>
+	<div id="div-3" style="width:100px;height:100px;background-color:#8942D5;"></div>
+
+	<h4>8. Animates all shown paragraphs to hide slowly (complete the animation within specified time).</h4>
+	<p id="p1">User ID : <input type="text" id='field1'></p>
+	<p id="p2">Password : <input type="password" id='field2'>
+
+	<h4>9.Toggle animation on and off.</h4>
+	<button id="enable">(Enable) jQuery.fx.off = false)</button>    
+	<button id="disable">(Disable) jQuery.fx.off = true)</button>  
+	<br><br>  
+	<button id="toggle">Toggle animation</button>  
+	<div id="tog" style="background:#98bf21;height:100px;width:100px;margin:50px;"></div>    
+
+	<h4>10. Animate all hidden elements to show slowly</h4>
+	<p id="show1"style="display: none">Hello</p>
+	<button id="show">Show it</button>
+
+	<h4>11.Animates all divs to slide down and slide up.</h4>
+
+	<div class="slide"></div>
+	<div class="slide"></div>
+	<div class="slide"></div>
+	<button id="btn_1">Slide down</button>
+	<button id="btn_2">Slide up</button>
+	
+
+</body>
+	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript">
+
+	// 1. Animate an element, by changing its height and width.
+		$("#btn1").click(function(){
+			$("#box").animate({
+			width: '200px',
+			height: '150px',
+			}, 1200)
+		})
+		$("#btn2").click(function(){
+			$("#box").animate({
+			width: '100px',
+			height: '100px',
+			}, 1200)
+		})
+
+		// 2. Stop an animation.
+		$("#btn1-2").click(function(){
+			$("#box2").animate({height: 250}, 1200)
+			$("#box2").animate({width: 200}, 1200)
+			$("#box2").animate({height: 150}, 1200)
+			$("#box2").animate({width: 100}, 1200)
+		})
+		$("#btn2-2").click(function(){
+			$("#box2").clearQueue();
+		})
+
+		// 3. Set a timer to delay execution of subsequent items in the queue.
+		$("#fade").click(function(){
+			$("#div1").delay(800).fadeIn();
+			$("#div2").delay(1000).fadeIn();
+			$("#div3").delay(1200).fadeIn();
+		})
+
+		// 4. Use dequeue to end a custom queue function which allows the queue to keep going.
+		$("#but4").click(function(){
+			$("#form4")
+			.animate({left:"+=250px"}, 2000)
+				.queue(function(){
+					$(this).toggleClass("new").dequeue();
+			})
+			.animate({ left: "-=250px"}, 2000)
+		})
+		// 5. Fade in and fade out all division elements.
+		$("#btn4").click(function(){
+			$("#fad").fadeOut(3000)
+		})
+		$("#btn4-2").click(function(){
+			$("#fad").fadeIn(3000)
+		})
+		// 6.Animates a paragraph to fade to an specified opacity (complete the animation within 500 milliseconds).
+		$("#fade6").click(function(){
+			$(this).fadeTo('slow', 0.3)
+		})
+
+		// 7. Toggle between fading in and fading out different boxes
+		$("#fade7").click(function(){
+			$("#div-1").fadeToggle()
+			$("#div-2").fadeToggle(2000)
+			$("#div-3").fadeToggle(4000)
+		})
+		// 8. Animates all shown paragraphs to hide slowly (complete the animation within specified time).
+		$("#p1").click(function(){
+			$(this).hide(3000)
+		})
+		$("#p2").click(function(){
+			$(this).hide(3000)
+		})
+		// 9. Toggle animation on and off.
+		$("#enable").click(function(){
+			jQuery.fx.off = false
+		})
+		$("#disable").click(function(){
+			jQuery.fx.off = true
+		})
+		$("#toggle").click(function(){
+			$("#tog").toggle('slow')
+		})
+		// 10. Animate all hidden elements to show slowly
+		$("#show").click(function(){
+			$("#show1").show('slow')
+		})
+		// 11.Animates all divs to slide down and slide up.
+		$("#btn_1").click(function(){
+			$(".slide").slideDown()
+		})
+		$("#btn_2").click(function(){
+			$(".slide").slideUp()
+		})
+	</script>
+
+</html>
