@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+<head>
+	<title>jQuery practical</title>
+	
+	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+</head>
+<body>
+	<h2>jQuery Practical exercises</h2>
+	<h4> 1. Test if jQuery is loaded. Check the console</h4>
+	<button id="test">Test</button>
+
+	<h4>2. Disable right click menu in html page using jquery. Check on the whole document.</h4>
+	<h4>3. Disable/enable the form submit button.</h4>
+		<input id="accept" name="accept" type="checkbox" value="y"/>I accept<br>
+		<input id="submitbtn" disabled="disabled" name="Submit" type="submit" value="Submit" />
+	<h4>4. Fix broken images automatically. Hide the following broken img tag in the body section.</h4>
+	<a href="http://www.w3resource.com"><img id="logo" src="//www.w3resource.com/image/w3resourcelogo.gif" alt="w3resource logo" width="150" height="78" /></a>
+
+	<h4>5. Blink text using jQuery.</h4>
+	<p>jQuery <span class="blink">Exercises</span> and Solution</p>
+
+	<h4>6. Print a page using jQuery. </h4>
+	<button id="print">Print</button>
+	
+	<h4>7. Limit character input in the textarea including count.</h4>
+	<form>
+	<label>Maximum 15 characters</label>
+	<textarea id="textarea" maxlength="15"></textarea>
+	<span id="rchars"></span> characters remaining
+	</form>
+
+	<h4>8. Scroll to the top of the page with jQuery.</h4>
+	<p>jquery</p>  
+	<p>jquery</p>  
+	<p>jquery</p>  
+	<p>jquery</p>  
+	<p>jquery</p>  
+	<p>jquery</p>  
+	<p>jquery</p>  
+	<p>jquery</p>  
+	<p>jquery</p>  
+	<p>jquery</p>  
+	<p>jquery</p>  
+	<p>jquery</p>  
+	<p>jquery</p>  
+	<p>jquery</p>  
+	<p>jquery</p>  
+	<p>jquery</p>  
+	<p>jquery</p>  
+	<p>jquery</p>  
+	<p>jquery</p>  
+	<p>jquery</p>  
+	<p>jquery</p>  
+	<p>jquery</p>  
+	<p>jquery</p>  
+	<p>jquery</p>  
+	<p>jquery</p>  
+	<p>jquery</p>  
+	<p>jquery</p>  
+	<p>jquery</p>  
+	<p>jquery</p>  
+	<p>jquery</p>  
+	<p>jquery</p>  
+	<p>jquery</p>  
+
+	<button id="scroll">Scroll top</button>
+
+
+</body>
+	<script>
+	// 1. Test if jQuery is loaded.
+	
+	$("#test").click(function(){
+		if (typeof jQuery == "undefined"){
+			console.log("jQuery has not been loaded")
+		} else {
+			console.log("jQuery has been loaded")
+		}
+	})
+	// 2. Disable right click menu in html page using jquery.
+
+	$(document).bind('contextmenu', function(event){
+		return false
+	})
+
+	// 3. Disable/enable the form submit button.
+
+	$("#accept").click(function(){
+		if ($("#submitbtn").is(':disabled')){
+			$("#submitbtn").removeAttr('disabled')
+		} else {
+			$("#submitbtn").attr('disabled', 'disabled')
+		}
+	})
+
+	// 4. Fix broken images automatically. Hide the following broken img tag in the body section.
+		$('img').error(function(){
+			$(this).hide()
+		})
+
+	// 5. Blink text using jQuery.
+	setInterval(function blink(){
+		$(".blink").fadeOut(500)
+		$(".blink").fadeIn(500)
+	}), 1200
+
+	// 6.Print a page using jQuery. 
+	$("#print").click(function(){
+		window.print()
+	})
+
+	// 7. Limit character input in the textarea including count.
+	var maxlength = 15
+	$('#textarea').on('keyup', function(){
+		var textlen = maxlength - $(this).val().length
+		$("#rchars").text(textlen)
+	})
+
+
+	// 8. Scroll to the top of the page with jQuery.
+	$("#scroll").click(function(){
+		$('body').animate({scrollTop: 0}, 'slow')
+	})
+
+	</script>
+</html>
+
+
+
